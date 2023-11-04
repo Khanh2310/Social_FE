@@ -5,11 +5,7 @@ import { authScreenAtom } from "./states/authAtoms";
 function App() {
   const authScreenState = useRecoilValue(authScreenAtom);
   console.log(authScreenState);
-  return (
-    <div>
-      <Login></Login>
-    </div>
-  );
+  return <Login></Login>;
 }
 
 export default App;
