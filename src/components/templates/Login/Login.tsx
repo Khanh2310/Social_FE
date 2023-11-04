@@ -1,6 +1,6 @@
-import { AuthLayout } from '../../layouts/AuthLayout';
-import { ImagesWithText } from '../../molecules/ImagesWithText';
-import { LoginForm } from '../../molecules/LoginForm';
+import { AuthLayout } from "../../layouts/AuthLayout";
+import { ImagesWithText } from "../../molecules/ImagesWithText";
+import { LoginForm } from "../../molecules/LoginForm";
 
 export const Login = () => {
   return (
