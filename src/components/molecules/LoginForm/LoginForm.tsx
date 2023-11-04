@@ -14,7 +14,7 @@ export const LoginForm = () => {
         placeholder="Password"
         className="authen-login_input w-full min-w-[370px] rounded-xl "
       />
-      <Button className="w-full bg-white py-6 ">
+      <Button className="w-full bg-white py-7 rounded-xl ">
         <Link to="/login" className="text-[#9f9f9f]">
           Log in
         </Link>
