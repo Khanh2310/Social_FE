@@ -6,7 +6,7 @@ import {
   RegistrationInputSchema,
 } from '../../../schema/registration/type';
 import { zodResolver } from '@hookform/resolvers/zod';
-
+import axios from 'axios';
 const defaultValues: RegistrationInput = {
   email: '',
   name: '',
@@ -14,22 +14,24 @@ const defaultValues: RegistrationInput = {
   password: '',
 };
 export const SignUpForm = () => {
-  const { register, handleSubmit } = useForm({
+  const { register, handleSubmit, reset } = useForm({
     defaultValues: { ...defaultValues },
     resolver: zodResolver(RegistrationInputSchema),
   });
 
   const handleSignUp: SubmitHandler<typeof defaultValues> = async (values) => {
     try {
-      const res = await fetch('/api/users/sign-up', {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-        },
-        body: JSON.stringify(values),
-      });
-      const data = res.json();
-      console.log(data);
+      await axios.post('/api/users/sign-up', values);
+      // const res = await fetch('/api/users/sign-up', {
+      //   method: 'POST',
+      //   headers: {
+      //     'Content-Type': 'application/json',
+      //   },
+      //   body: JSON.stringify(values),
+      // });
+      // res.json();
+      localStorage.setItem('threads', JSON.stringify(values));
+      reset(defaultValues);
     } catch (error) {
       console.log(error);
     }
