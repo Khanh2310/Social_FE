@@ -1,16 +1,18 @@
-import { AuthLayout } from '../../layouts/AuthLayout';
-import { ImagesWithText } from '../../molecules/ImagesWithText';
-import { LoginForm } from '../../molecules/LoginForm';
+import { AuthLayout } from "../../layouts/AuthLayout";
+import { ImagesWithText } from "../../molecules/ImagesWithText";
+import { LoginForm } from "../../molecules/LoginForm";
 
 export const Login = () => {
   return (
     <AuthLayout>
-      <section className="max-w-[400px] mx-auto text-center 2xl:absolute">
+      <section className="max-w-[400px] text-center flex flex-col justify-center min-h-screen relative md:mt-12">
         <p className="text-base-semibold text-center text-light-1 px-10 mb-4">
           Log in with your Instagram account
         </p>
         <LoginForm />
-        <p className="text-[#777777] text-[15px] mb-4">Forgot password?</p>
+        <p className="text-[#777777] text-[15px] mb-4">
+          You forgot your password?
+        </p>
         <div className="flex items-center text-[#323333] justify-center mb-5">
           <p className="after:content-[''] flex-1 border border-b-0 border-[#323333]"></p>
           <p className="text-center text-[#777777] mx-4">or</p>

@@ -3,6 +3,7 @@
 @tailwind utilities;
 
 @layer components {
+
   /* main */
   .main-container {
     @apply flex min-h-screen flex-1 flex-col items-center bg-dark-1 px-6 pb-10 pt-28 max-md:pb-32 sm:px-10;
@@ -65,8 +66,9 @@
   .bottombar {
     @apply fixed bottom-0 z-10 w-full rounded-t-3xl bg-glassmorphism p-4 backdrop-blur-lg xs:px-7 md:hidden;
   }
+
   .bottombar-pc {
-    @apply fixed bottom-0 z-10 w-full rounded-t-3xl  p-4 backdrop-blur-lg xs:px-7;
+    @apply fixed bottom-0 z-10 w-full rounded-t-3xl p-4 backdrop-blur-lg xs:px-7;
   }
 
   .bottombar_container {
@@ -92,6 +94,7 @@
   .rightsidebar {
     @apply sticky right-0 top-0 z-20 flex h-screen w-fit flex-col justify-between gap-12 overflow-auto border-l border-l-dark-4 bg-dark-2 px-10 pb-6 pt-28 max-xl:hidden;
   }
+
   .rightsidebar-pc {
     @apply fixed right-0 z-20 bottom-0 flex w-fit flex-col justify-between gap-5 overflow-auto px-10 pb-6 pt-28 max-xl:hidden;
   }
@@ -127,9 +130,7 @@
   @apply max-sm:hidden;
 }
 
-.cl-organizationSwitcherTrigger
-  .cl-organizationPreview
-  .cl-organizationPreviewTextContainer {
+.cl-organizationSwitcherTrigger .cl-organizationPreview .cl-organizationPreviewTextContainer {
   @apply max-sm:hidden;
 }
 
@@ -172,5 +173,5 @@
 }
 
 .authen-login_input {
-  @apply border border-dark-4 bg-[#1e1e1e] text-light-1 no-focus py-6 text-[15px] font-light mb-2 pl-5;
+  @apply border border-dark-4 bg-[#1e1e1e] text-light-1 no-focus pt-7 pb-7 text-[15px] font-light mb-2 pl-5;
 }

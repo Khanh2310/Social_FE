@@ -1,15 +1,15 @@
-import { BottomServices } from '../../../utils/BottomServices';
-import imgHeader from '../../../assets/header_logo.png';
-import qr from '../../../assets/qr_code.svg';
-import { Images } from '../../atoms/Images';
-import { Link } from 'react-router-dom';
+import { BottomServices } from "../../../utils/BottomServices";
+import imgHeader from "../../../assets/header_logo.png";
+import qr from "../../../assets/qr_code.svg";
+import { Images } from "../../atoms/Images";
+import { Link } from "react-router-dom";
 export const AuthLayout = ({ children }: { children: React.ReactNode }) => {
   return (
-    <>
+    <div className="relative">
       <Images
         src={imgHeader}
         alt="header_image"
-        className="inline-block relative object-cover"
+        className="inline-block absolute object-cover bg-auto"
       />
       <div className="md:w-full container">{children}</div>
       <div className="rightsidebar-pc text-white items-center justify-center">
@@ -36,6 +36,6 @@ export const AuthLayout = ({ children }: { children: React.ReactNode }) => {
           </Link>
         ))}
       </div>
-    </>
+    </div>
   );
 };
