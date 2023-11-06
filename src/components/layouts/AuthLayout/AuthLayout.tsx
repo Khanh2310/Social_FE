@@ -1,8 +1,8 @@
-import { BottomServices } from "../../../utils/BottomServices";
-import imgHeader from "../../../assets/header_logo.png";
-import qr from "../../../assets/qr_code.svg";
-import { Images } from "../../atoms/Images";
-import { Link } from "react-router-dom";
+import { BottomServices } from '../../../utils/BottomServices';
+import imgHeader from '../../../assets/header_logo.png';
+import qr from '../../../assets/qr_code.svg';
+import { Images } from '../../atoms/Images';
+import { Link } from 'react-router-dom';
 export const AuthLayout = ({ children }: { children: React.ReactNode }) => {
   return (
     <div className="relative">
