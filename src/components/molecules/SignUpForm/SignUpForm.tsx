@@ -7,6 +7,7 @@ import {
 } from '../../../schema/registration/type';
 import { zodResolver } from '@hookform/resolvers/zod';
 import axios from 'axios';
+import { setUserToLocalStorage } from '../../hooks/useQueryUser';
 const defaultValues: RegistrationInput = {
   email: '',
   name: '',
@@ -22,15 +23,8 @@ export const SignUpForm = () => {
   const handleSignUp: SubmitHandler<typeof defaultValues> = async (values) => {
     try {
       await axios.post('/api/users/sign-up', values);
-      // const res = await fetch('/api/users/sign-up', {
-      //   method: 'POST',
-      //   headers: {
-      //     'Content-Type': 'application/json',
-      //   },
-      //   body: JSON.stringify(values),
-      // });
-      // res.json();
-      localStorage.setItem('threads', JSON.stringify(values));
+      // localStorage.setItem('threads', JSON.stringify(values));
+      setUserToLocalStorage(JSON.stringify(values));
       reset(defaultValues);
     } catch (error) {
       console.log(error);
