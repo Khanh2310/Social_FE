@@ -1,7 +1,7 @@
 import { Button } from '../../atoms/Button';
 import { Input } from '../../atoms/Input';
 import { Link } from 'react-router-dom';
-export const LoginForm = () => {
+export const SignInForm = () => {
   return (
     <form className="flex flex-col w-full mb-5">
       <Input

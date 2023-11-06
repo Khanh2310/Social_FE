@@ -1,15 +1,15 @@
-import { AuthLayout } from "../../layouts/AuthLayout";
-import { ImagesWithText } from "../../molecules/ImagesWithText";
-import { LoginForm } from "../../molecules/LoginForm";
+import { AuthLayout } from '../../layouts/AuthLayout';
+import { ImagesWithText } from '../../molecules/ImagesWithText';
+import { SignInForm } from '../../molecules/SignInForm';
 
-export const Login = () => {
+export const SignIn = () => {
   return (
     <AuthLayout>
       <section className="max-w-[400px] text-center flex flex-col justify-center min-h-screen relative md:mt-12">
         <p className="text-base-semibold text-center text-light-1 px-10 mb-4">
           Log in with your Instagram account
         </p>
-        <LoginForm />
+        <SignInForm />
         <p className="text-[#777777] text-[15px] mb-4">
           You forgot your password?
         </p>

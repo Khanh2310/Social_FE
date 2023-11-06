@@ -1,11 +1,11 @@
-import "./App.css";
-import { Login } from "./components/templates/Login";
-import { useRecoilValue } from "recoil";
-import { authScreenAtom } from "./states/authAtoms";
+import './App.css';
+import { useRecoilValue } from 'recoil';
+import { authScreenAtom } from './states/authAtoms';
+import { SignIn } from './components/templates/SignIn';
 function App() {
   const authScreenState = useRecoilValue(authScreenAtom);
   console.log(authScreenState);
-  return <Login></Login>;
+  return <SignIn />;
 }
 
 export default App;
