@@ -2,8 +2,15 @@ import { BottomServices } from '../../../utils/BottomServices';
 import imgHeader from '../../../assets/header_logo.png';
 import qr from '../../../assets/qr_code.svg';
 import { Images } from '../../atoms/Images';
-import { Link, Outlet } from 'react-router-dom';
+import { Link, Navigate, Outlet } from 'react-router-dom';
+import { useRecoilValue } from 'recoil';
+import { userAtoms } from '../../../states/authAtoms';
 export const AuthLayout = () => {
+  const user = useRecoilValue(userAtoms);
+  if (user) {
+    return <Navigate to="/home" replace />;
+  }
+
   return (
     <div className="relative">
       <Images

@@ -1,7 +1,7 @@
 import { ImagesWithText } from '../../molecules/ImagesWithText';
 import { SignUpForm } from '../../molecules/SignUpForm';
 
-export const SignUp = () => {
+export const SignUpTemplates = () => {
   return (
     <section className="max-w-[400px] text-center flex flex-col justify-center min-h-screen relative md:mt-12">
       <p className="text-base-semibold text-center text-light-1 px-10 mb-4">

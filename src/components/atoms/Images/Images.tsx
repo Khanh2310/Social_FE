@@ -1,7 +1,7 @@
 interface Params {
   src: string;
   alt: string;
-  className: string;
+  className?: string;
   width?: number;
   height?: number;
 }

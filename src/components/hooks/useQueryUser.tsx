@@ -1,3 +1,5 @@
+import { User } from '../../types/user/types';
+
 const isQuotaExceeded = (e: unknown) => {
   let quotaExceeded = false;
   if (e instanceof DOMException) {
