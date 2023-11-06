@@ -1,10 +1,13 @@
 import { Button } from '../../atoms/Button';
 import { Input } from '../../atoms/Input';
 import { useForm, SubmitHandler } from 'react-hook-form';
-import { SignUpInput, SignUpInputSchema } from '../../../schema/SignUp/type';
+import {
+  RegistrationInput,
+  RegistrationInputSchema,
+} from '../../../schema/registration/type';
 import { zodResolver } from '@hookform/resolvers/zod';
 
-const defaultValues: SignUpInput = {
+const defaultValues: RegistrationInput = {
   email: '',
   name: '',
   username: '',
@@ -13,11 +16,23 @@ const defaultValues: SignUpInput = {
 export const SignUpForm = () => {
   const { register, handleSubmit } = useForm({
     defaultValues: { ...defaultValues },
-    resolver: zodResolver(SignUpInputSchema),
+    resolver: zodResolver(RegistrationInputSchema),
   });
 
-  const handleSignUp: SubmitHandler<typeof defaultValues> = (values) => {
-    console.log(values);
+  const handleSignUp: SubmitHandler<typeof defaultValues> = async (values) => {
+    try {
+      const res = await fetch('/api/users/sign-up', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(values),
+      });
+      const data = res.json();
+      console.log(data);
+    } catch (error) {
+      console.log(error);
+    }
   };
   return (
     <form
@@ -47,7 +62,7 @@ export const SignUpForm = () => {
         {...register('password')}
       />
       <Button
-        className="w-full bg-white text-[#9f9f9f py-7 rounded-xl"
+        className="w-full bg-white text-[#9f9f9f py-7 rounded-xl cursor-pointer"
         type="submit"
       >
         Sign Up
