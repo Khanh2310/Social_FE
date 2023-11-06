@@ -1,11 +1,10 @@
 import './App.css';
-import { useRecoilValue } from 'recoil';
-import { authScreenAtom } from './states/authAtoms';
-import { SignIn } from './components/templates/SignIn';
+// import { useRecoilValue } from 'recoil';
+// import { authScreenAtom } from './states/authAtoms';
+import { RouterConfig } from './routes/config';
 function App() {
-  const authScreenState = useRecoilValue(authScreenAtom);
-  console.log(authScreenState);
-  return <SignIn />;
+  // const authScreenState = useRecoilValue(authScreenAtom);
+  return <RouterConfig />;
 }
 
 export default App;
