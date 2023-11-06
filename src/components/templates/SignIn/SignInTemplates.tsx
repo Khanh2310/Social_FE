@@ -1,5 +1,5 @@
 import { ImagesWithText } from '../../molecules/ImagesWithText';
-import { SignInForm } from '../../molecules/SignInForm';
+import { SignInForm } from '../../organisms/SignInForm';
 
 export const SignInTemplates = () => {
   return (

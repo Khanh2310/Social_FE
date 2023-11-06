@@ -1,5 +1,5 @@
 import { ImagesWithText } from '../../molecules/ImagesWithText';
-import { SignUpForm } from '../../molecules/SignUpForm';
+import { SignUpForm } from '../../organisms/SignUpForm';
 
 export const SignUpTemplates = () => {
   return (

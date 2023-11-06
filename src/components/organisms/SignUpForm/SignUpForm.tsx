@@ -23,7 +23,6 @@ export const SignUpForm = () => {
   const handleSignUp: SubmitHandler<typeof defaultValues> = async (values) => {
     try {
       await axios.post('/api/users/sign-up', values);
-      // localStorage.setItem('threads', JSON.stringify(values));
       setUserToLocalStorage(JSON.stringify(values));
       reset(defaultValues);
     } catch (error) {

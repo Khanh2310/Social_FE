@@ -7,7 +7,7 @@ export const Topbar = () => {
     <nav className="topbar">
       <Link to="/" className="flex items-center gap-4 ">
         <Images src={Logo} width={50} height={50} alt="logo" className="" />
-        <p className="text-heading3-bold text-light-1 max-xs:hidden">NextJS</p>
+        {/* <p className="text-heading3-bold text-light-1 max-xs:hidden">NextJS</p> */}
       </Link>
       <div className="flex items-center gap-1">
         <div className="block md:hidden">
