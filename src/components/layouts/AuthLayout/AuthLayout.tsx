@@ -7,8 +7,8 @@ import { useRecoilValue } from 'recoil';
 import { userAtoms } from '../../../states/authAtoms';
 export const AuthLayout = () => {
   const user = useRecoilValue(userAtoms);
-  if (!user) {
-    return <Navigate to="/sign-in" replace />;
+  if (user) {
+    return <Navigate to="/" replace />;
   }
 
   return (
