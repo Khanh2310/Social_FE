@@ -10,7 +10,7 @@ export const RouterConfig: React.FC = () => {
       <BrowserRouter>
         <Routes>
           <Route path="/" element={<BasicLayout />}>
-            <Route index element={<Home />}></Route>
+            <Route index element={<Home />} />
           </Route>
           <Route path="/" element={<AuthLayout />}>
             <Route path="/sign-in" element={<SignIn />} />
