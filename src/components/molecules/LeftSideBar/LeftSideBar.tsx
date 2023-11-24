@@ -1,20 +1,22 @@
-import { Link, useLocation } from 'react-router-dom';
+import { Link, useLocation, useNavigate } from 'react-router-dom';
 import { Images } from '../../atoms/Images';
 import { sideBarLinks } from '../../../utils/BottomServices';
 import Logout from '../../../assets/logout.svg';
-import { useRecoilValue } from 'recoil';
+import { useRecoilValue, useSetRecoilState } from 'recoil';
 import { userAtoms } from '../../../states/authAtoms';
-import axios from 'axios';
-import { removeUserFromLocalStorage } from '../../hooks/useQueryUser';
+import { useMutateLogout } from '../../hooks/useMutateUser';
+
 export const LeftSideBar = () => {
   const { pathname } = useLocation();
   const user = useRecoilValue(userAtoms);
-
+  const { mutateAsync } = useMutateLogout();
+  const navigate = useNavigate();
+  const setUser = useSetRecoilState(userAtoms);
   const handleLogout = async () => {
-    try {
-      const res = await axios.post('/api/users/logout');
-      removeUserFromLocalStorage();
-    } catch (error) {}
+    await mutateAsync({}).finally(() => {
+      setUser(null);
+      navigate('/sign-in');
+    });
   };
   return (
     <section className="custom-scrollbar leftsidebar">
@@ -25,9 +27,6 @@ export const LeftSideBar = () => {
             const isActive =
               (pathname.includes(link.route) && link.route.length > 1) ||
               pathname === link.route;
-
-            // if (link.route === '/profile')
-            //   link.route = `${link.route}/${userId}`;
             return (
               <Link
                 to={link.route}

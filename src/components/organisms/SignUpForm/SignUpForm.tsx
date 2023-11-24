@@ -6,25 +6,33 @@ import {
   RegistrationInputSchema,
 } from '../../../schema/registration/type';
 import { zodResolver } from '@hookform/resolvers/zod';
-import { setUserToLocalStorage } from '../../hooks/useQueryUser';
-import { registration } from '../../hooks/useMutateUser';
+import { useMutateRegistration } from '../../hooks/useMutateUser';
+import { useNavigate } from 'react-router';
+import { userAtoms } from '../../../states/authAtoms';
+import { useSetRecoilState } from 'recoil';
+
 const defaultValues: RegistrationInput = {
   email: '',
   name: '',
   username: '',
   password: '',
 };
+
 export const SignUpForm = () => {
   const { register, handleSubmit, reset } = useForm({
     defaultValues: { ...defaultValues },
     resolver: zodResolver(RegistrationInputSchema),
   });
+  const { mutateAsync } = useMutateRegistration();
+  const navigate = useNavigate();
+  const setUser = useSetRecoilState(userAtoms);
 
   const handleSignUp: SubmitHandler<typeof defaultValues> = async (values) => {
     try {
-      registration(values);
-      setUserToLocalStorage(JSON.stringify(values));
+      await mutateAsync({ ...values });
+      setUser(values);
       reset(defaultValues);
+      navigate('/');
     } catch (error) {
       console.log(error);
     }
