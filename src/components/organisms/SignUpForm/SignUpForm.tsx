@@ -6,8 +6,8 @@ import {
   RegistrationInputSchema,
 } from '../../../schema/registration/type';
 import { zodResolver } from '@hookform/resolvers/zod';
-import axios from 'axios';
 import { setUserToLocalStorage } from '../../hooks/useQueryUser';
+import { registration } from '../../hooks/useMutateUser';
 const defaultValues: RegistrationInput = {
   email: '',
   name: '',
@@ -22,7 +22,7 @@ export const SignUpForm = () => {
 
   const handleSignUp: SubmitHandler<typeof defaultValues> = async (values) => {
     try {
-      await axios.post('/api/users/sign-up', values);
+      registration(values);
       setUserToLocalStorage(JSON.stringify(values));
       reset(defaultValues);
     } catch (error) {

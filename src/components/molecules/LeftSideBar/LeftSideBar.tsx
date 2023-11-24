@@ -4,9 +4,18 @@ import { sideBarLinks } from '../../../utils/BottomServices';
 import Logout from '../../../assets/logout.svg';
 import { useRecoilValue } from 'recoil';
 import { userAtoms } from '../../../states/authAtoms';
+import axios from 'axios';
+import { removeUserFromLocalStorage } from '../../hooks/useQueryUser';
 export const LeftSideBar = () => {
   const { pathname } = useLocation();
   const user = useRecoilValue(userAtoms);
+
+  const handleLogout = async () => {
+    try {
+      const res = await axios.post('/api/users/logout');
+      removeUserFromLocalStorage();
+    } catch (error) {}
+  };
   return (
     <section className="custom-scrollbar leftsidebar">
       <div className="flex w-full flex-1 flex-col gap-6 px-6">
@@ -38,7 +47,7 @@ export const LeftSideBar = () => {
       </div>
       {user && (
         <div className="mt-10 px-6">
-          <div className="flex cursor-pointer gap-4 p-4">
+          <div className="flex cursor-pointer gap-4 p-4" onClick={handleLogout}>
             <Images src={Logout} width={24} height={24} alt="logout" />
             <p className="text-light-2 max-lg:hidden">Logout</p>
           </div>
