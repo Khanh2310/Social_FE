@@ -64,6 +64,7 @@ const logout = async () => {
 
 export const useMutateLogout = (): UseMutationResult<User, AxiosError> => {
   const queryClient = useQueryClient();
+
   return useMutation(logout, {
     onMutate: () => {
       removeUserFromLocalStorage();

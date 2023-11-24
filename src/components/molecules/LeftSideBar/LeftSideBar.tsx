@@ -2,7 +2,7 @@ import { Link, useLocation, useNavigate } from 'react-router-dom';
 import { Images } from '../../atoms/Images';
 import { sideBarLinks } from '../../../utils/BottomServices';
 import Logout from '../../../assets/logout.svg';
-import { useRecoilValue, useSetRecoilState } from 'recoil';
+import { useRecoilValue } from 'recoil';
 import { userAtoms } from '../../../states/authAtoms';
 import { useMutateLogout } from '../../hooks/useMutateUser';
 
@@ -11,10 +11,8 @@ export const LeftSideBar = () => {
   const user = useRecoilValue(userAtoms);
   const { mutateAsync } = useMutateLogout();
   const navigate = useNavigate();
-  const setUser = useSetRecoilState(userAtoms);
   const handleLogout = async () => {
-    await mutateAsync({}).finally(() => {
-      setUser(null);
+    mutateAsync({}).finally(() => {
       navigate('/sign-in');
     });
   };
@@ -46,10 +44,13 @@ export const LeftSideBar = () => {
       </div>
       {user && (
         <div className="mt-10 px-6">
-          <div className="flex cursor-pointer gap-4 p-4" onClick={handleLogout}>
+          <button
+            className="flex cursor-pointer gap-4 p-4"
+            onClick={handleLogout}
+          >
             <Images src={Logout} width={24} height={24} alt="logout" />
             <p className="text-light-2 max-lg:hidden">Logout</p>
-          </div>
+          </button>
         </div>
       )}
     </section>

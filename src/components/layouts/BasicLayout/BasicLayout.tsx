@@ -1,9 +1,20 @@
-import { Outlet } from 'react-router-dom';
+import { Outlet, useNavigate } from 'react-router-dom';
 import { Topbar } from '../../molecules/Topbar';
 import { LeftSideBar } from '../../molecules/LeftSideBar';
 import { RightSideBar } from '../../molecules/RightSideBar';
 import { Bottombar } from '../../molecules/Bottombar';
+import { useRecoilValue } from 'recoil';
+import { userAtoms } from '../../../states/authAtoms';
+import { useEffect } from 'react';
 export const BasicLayout = () => {
+  const navigate = useNavigate();
+  const user = useRecoilValue(userAtoms);
+  useEffect(() => {
+    if (!user) {
+      navigate('/sign-in');
+    }
+  }, []);
+
   return (
     <>
       <Topbar />

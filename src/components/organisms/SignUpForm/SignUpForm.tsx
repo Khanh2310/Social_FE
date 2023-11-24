@@ -28,7 +28,7 @@ export const SignUpForm = () => {
     try {
       await mutateAsync({ ...values });
       reset(defaultValues);
-      navigate('/');
+      navigate('/sign-in');
     } catch (error) {
       console.log(error);
     }

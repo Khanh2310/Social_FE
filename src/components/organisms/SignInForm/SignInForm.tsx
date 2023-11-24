@@ -1,6 +1,3 @@
-// import { Button } from '../../atoms/Button';
-// import { Input } from '../../atoms/Input';
-// import { Link } from 'react-router-dom';
 import { zodResolver } from '@hookform/resolvers/zod/src/zod.js';
 import {
   Form,
@@ -14,18 +11,24 @@ import { Input } from '../../atoms/Input';
 import { Button } from '../../atoms/Button';
 import { SignInInputSchema, SignInput } from '../../../schema/signin/type';
 import { z } from 'zod';
+import { useMutateLogin } from '../../hooks/useMutateUser';
+import { useNavigate } from 'react-router-dom';
+
 export const SignInForm = () => {
   const defaultValues: SignInput = {
     username: '',
     password: '',
   };
+  const navigate = useNavigate();
   const form = useForm({
     defaultValues: { ...defaultValues },
     resolver: zodResolver(SignInInputSchema),
   });
-
+  const { mutateAsync } = useMutateLogin();
   const onSubmit = async (values: z.infer<typeof SignInInputSchema>) => {
-    console.log(values);
+    await mutateAsync(values).then(() => {
+      navigate(`/`);
+    });
   };
   return (
     <Form {...form}>
@@ -76,22 +79,5 @@ export const SignInForm = () => {
         </Button>
       </form>
     </Form>
-    // <form className="flex flex-col w-full mb-5">
-    //   <Input
-    //     name="email"
-    //     placeholder="Username, phone or email"
-    //     className="authen-login_input w-full min-w-[370px] rounded-xl "
-    //   />
-    //   <Input
-    //     name="password"
-    //     placeholder="Password"
-    //     className="authen-login_input w-full min-w-[370px] rounded-xl "
-    //   />
-    //   <Button className="w-full bg-white py-7 rounded-xl ">
-    //     <Link to="/login" className="text-[#9f9f9f]">
-    //       Log in
-    //     </Link>
-    //   </Button>
-    // </form>
   );
 };
