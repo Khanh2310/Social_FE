@@ -1,3 +1,5 @@
+import { User } from '../../types/user/types';
+
 const isQuotaExceeded = (e: unknown) => {
   let quotaExceeded = false;
   if (e instanceof DOMException) {
@@ -29,8 +31,8 @@ export const setToLocalStorage = (key: string, value: string) => {
   }
 };
 
-export const setUserToLocalStorage = (user: string) => {
-  setToLocalStorage('user', user);
+export const setUserToLocalStorage = (user: User) => {
+  setToLocalStorage('user', user._id);
 };
 export const getUserFromLocalStorage = (): string | null => {
   const user = localStorage.getItem('user');

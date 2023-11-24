@@ -8,8 +8,6 @@ import {
 import { zodResolver } from '@hookform/resolvers/zod';
 import { useMutateRegistration } from '../../hooks/useMutateUser';
 import { useNavigate } from 'react-router';
-import { userAtoms } from '../../../states/authAtoms';
-import { useSetRecoilState } from 'recoil';
 
 const defaultValues: RegistrationInput = {
   email: '',
@@ -25,12 +23,10 @@ export const SignUpForm = () => {
   });
   const { mutateAsync } = useMutateRegistration();
   const navigate = useNavigate();
-  const setUser = useSetRecoilState(userAtoms);
 
   const handleSignUp: SubmitHandler<typeof defaultValues> = async (values) => {
     try {
       await mutateAsync({ ...values });
-      setUser(values);
       reset(defaultValues);
       navigate('/');
     } catch (error) {

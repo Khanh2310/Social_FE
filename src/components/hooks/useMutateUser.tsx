@@ -1,16 +1,40 @@
 import axios, { AxiosError } from 'axios';
 import { RegistrationInput } from '../../schema/registration/type';
-import { User } from '../../types/user/types';
+import { User, userQueryKey } from '../../types/user/types';
 import { UseMutationResult, useMutation, useQueryClient } from 'react-query';
 import {
   removeUserFromLocalStorage,
   setUserToLocalStorage,
 } from './useQueryUser';
 import axiosInstance from '../../config/axiosInstance';
+import { SignInput } from '../../schema/signin/type';
 export const axiosUnAuthInstance = axios.create({
   baseURL: import.meta.env.VITE_API_URL,
   withCredentials: true,
 });
+
+const login = async (formData: SignInput) => {
+  const { data } = await axiosUnAuthInstance.post<User>(
+    `/users/sign-in`,
+    formData
+  );
+  return data;
+};
+export const useMutateLogin = (): UseMutationResult<
+  User,
+  AxiosError,
+  SignInput,
+  undefined
+> => {
+  const queryClient = useQueryClient();
+  return useMutation(login, {
+    onSuccess: (data) => {
+      queryClient.removeQueries([]);
+      setUserToLocalStorage(data);
+      queryClient.setQueriesData(userQueryKey, data);
+    },
+  });
+};
 
 const registration = async (formData: RegistrationInput) => {
   const { data } = await axiosUnAuthInstance.post<User>(
@@ -28,7 +52,7 @@ export const useMutateRegistration = (): UseMutationResult<
 > => {
   return useMutation(registration, {
     onSuccess: (data) => {
-      setUserToLocalStorage(JSON.stringify(data));
+      setUserToLocalStorage(data);
     },
   });
 };

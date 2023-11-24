@@ -12,12 +12,18 @@ import {
 import { useForm } from 'react-hook-form';
 import { Input } from '../../atoms/Input';
 import { Button } from '../../atoms/Button';
-import { SignInInputSchema } from '../../../schema/signin/type';
+import { SignInInputSchema, SignInput } from '../../../schema/signin/type';
 import { z } from 'zod';
 export const SignInForm = () => {
+  const defaultValues: SignInput = {
+    username: '',
+    password: '',
+  };
   const form = useForm({
+    defaultValues: { ...defaultValues },
     resolver: zodResolver(SignInInputSchema),
   });
+
   const onSubmit = async (values: z.infer<typeof SignInInputSchema>) => {
     console.log(values);
   };
@@ -29,7 +35,7 @@ export const SignInForm = () => {
       >
         <FormField
           control={form.control}
-          name="email"
+          name="username"
           render={({ field }) => (
             <FormItem>
               <FormControl>
