@@ -10,9 +10,9 @@ export const RouterConfig: React.FC = () => {
     <>
       <BrowserRouter>
         <Routes>
-          <Route path="profile" element={<ProfileForm />} />
           <Route path="/" element={<BasicLayout />}>
             <Route index element={<Home />} />
+            <Route path="/profile" element={<ProfileForm />} />
           </Route>
           <Route path="/" element={<AuthLayout />}>
             <Route path="/sign-in" element={<SignIn />} />

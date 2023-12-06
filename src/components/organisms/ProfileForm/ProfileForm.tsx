@@ -1,15 +1,15 @@
-import { IconNext } from '../../atoms/Icons';
-
 export const ProfileForm = () => {
   return (
-    <div className="w-[800px] mx-auto bg-dark-4">
-      <div className="flex items-center justify-between">
-        <button className="text-white">
-          <IconNext />
-        </button>
-        <div className="text-white">Edit Profile</div>
-        <button className=""></button>
-      </div>
-    </div>
+    <>
+      <form action="">
+        <div className="avatar-wrapper">
+          <img className="profile-pic" />
+          <div className="upload-button">
+            <i className="fa fa-arrow-circle-up" aria-hidden="true"></i>
+          </div>
+          <input className="file-upload" type="file" accept="image/*" />
+        </div>
+      </form>
+    </>
   );
 };
