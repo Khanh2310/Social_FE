@@ -4,13 +4,13 @@ import { Images } from '../../atoms/Images';
 import { Input } from '../../atoms/Input';
 import { Button } from '../../atoms/Button';
 import AvatarDefault from '../../../assets/user.png';
-import Edit from '../../../assets/edit.png';
 import {
   Form,
   FormControl,
   FormField,
   FormItem,
   FormLabel,
+  FormMessage,
 } from '../../molecules/Form';
 import { useForm } from 'react-hook-form';
 
@@ -43,20 +43,20 @@ export const ProfileForm = () => {
     <Form {...form}>
       <form
         onSubmit={form.handleSubmit(onSubmit)}
-        className="flex flex-col justify-start gap-10"
+        className="flex flex-col justify-center gap-10 w-full max-w-[500px] mx-auto"
       >
         <FormField
           control={form.control}
           name="profile_photo"
           render={({ field }) => (
-            <FormItem className="flex items-center gap-4 ">
+            <FormItem className="flex items-center gap-4 justify-center">
               <FormLabel className="account-form_image-label">
                 <Images
                   src={`${field.value ? field.value : AvatarDefault}`}
                   width={96}
                   height={96}
                   alt="profile_photo"
-                  className="rounded-full object-contain cursor-pointer inline-block relative"
+                  className="rounded-full object-contain cursor-pointer"
                 />
               </FormLabel>
               <FormControl className="flex-1 text-base-semibold text-gray-200">
@@ -72,9 +72,69 @@ export const ProfileForm = () => {
             </FormItem>
           )}
         />
+        <FormField
+          control={form.control}
+          name="fullname"
+          render={({ field }) => (
+            <FormItem className="flex flex-col w-full gap-3">
+              <FormLabel className="text-base-semibold text-light-2">
+                Full name *
+              </FormLabel>
+              <FormControl className="no-focus border border-dark-4 bg-dark-3 text-light-1">
+                <Input className="account-form_input no-focus" {...field} />
+              </FormControl>
+              <FormMessage />
+            </FormItem>
+          )}
+        />
+        <FormField
+          control={form.control}
+          name="username"
+          render={({ field }) => (
+            <FormItem className="flex flex-col w-full gap-3">
+              <FormLabel className="text-base-semibold text-light-2">
+                User name *
+              </FormLabel>
+              <FormControl className="no-focus border border-dark-4 bg-dark-3 text-light-1">
+                <Input className="account-form_input no-focus" {...field} />
+              </FormControl>
+              <FormMessage />
+            </FormItem>
+          )}
+        />
+        <FormField
+          control={form.control}
+          name="email"
+          render={({ field }) => (
+            <FormItem className="flex flex-col w-full gap-3">
+              <FormLabel className="text-base-semibold text-light-2">
+                Email address *
+              </FormLabel>
+              <FormControl className="no-focus border border-dark-4 bg-dark-3 text-light-1">
+                <Input className="account-form_input no-focus" {...field} />
+              </FormControl>
+              <FormMessage />
+            </FormItem>
+          )}
+        />
+        <FormField
+          control={form.control}
+          name="bio"
+          render={({ field }) => (
+            <FormItem className="flex flex-col w-full gap-3">
+              <FormLabel className="text-base-semibold text-light-2">
+                Bio *
+              </FormLabel>
+              <FormControl className="no-focus border border-dark-4 bg-dark-3 text-light-1">
+                <Input className="account-form_input no-focus" {...field} />
+              </FormControl>
+              <FormMessage />
+            </FormItem>
+          )}
+        />
         <Button
           type="submit"
-          className="bg-primary-500 text-white w-full max-w-[300px] mx-auto"
+          className="bg-primary-500 text-white w-full max-w-[300px] mx-auto py-6"
         >
           Save Changes
         </Button>
