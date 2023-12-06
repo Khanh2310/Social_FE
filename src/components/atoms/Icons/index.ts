@@ -1,2 +1,3 @@
 import { IconSearch } from './IconSearch';
-export { IconSearch };
+import { IconNext } from './IconNext';
+export { IconSearch, IconNext };
