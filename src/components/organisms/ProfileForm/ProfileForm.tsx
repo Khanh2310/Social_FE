@@ -1,9 +1,11 @@
 import { ChangeEvent, useState } from 'react';
-import { isBase64Image } from '../../../utils/cropimage';
 import { Images } from '../../atoms/Images';
 import { Input } from '../../atoms/Input';
 import { Button } from '../../atoms/Button';
 import AvatarDefault from '../../../assets/user.png';
+import { zodResolver } from '@hookform/resolvers/zod';
+import * as z from 'zod';
+
 import {
   Form,
   FormControl,
@@ -13,14 +15,23 @@ import {
   FormMessage,
 } from '../../molecules/Form';
 import { useForm } from 'react-hook-form';
+import { UserValidation } from '../../../schema/user/type';
 
 export const ProfileForm = () => {
   const [files, setFiles] = useState<File[]>([]);
 
-  const form = useForm({});
-  const onSubmit = async (values) => {
-    const blob = values;
-    isBase64Image(blob);
+  const form = useForm({
+    resolver: zodResolver(UserValidation),
+    defaultValues: {
+      profile_photo: '',
+      fullname: '',
+      username: '',
+      email: '',
+      bio: '',
+    },
+  });
+  const onSubmit = async (values: z.infer<typeof UserValidation>) => {
+    console.log(values);
   };
   const handleImage = (
     e: ChangeEvent<HTMLInputElement>,
