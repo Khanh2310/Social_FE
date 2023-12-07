@@ -1,4 +1,4 @@
-import { ChangeEvent, useEffect, useState } from 'react';
+import { ChangeEvent, useEffect } from 'react';
 import { Images } from '../../atoms/Images';
 import { Input } from '../../atoms/Input';
 import { Button } from '../../atoms/Button';
@@ -108,7 +108,7 @@ export const ProfileForm = () => {
         />
         <FormField
           control={form.control}
-          name="fullname"
+          name="name"
           render={({ field }) => (
             <FormItem className="flex flex-col w-full gap-3">
               <FormLabel className="text-base-semibold text-light-2">
