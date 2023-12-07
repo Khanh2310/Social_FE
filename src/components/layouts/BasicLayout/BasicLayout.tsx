@@ -13,6 +13,7 @@ export const BasicLayout = () => {
     if (!user) {
       navigate('/sign-in');
     }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   return (
