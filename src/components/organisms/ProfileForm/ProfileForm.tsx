@@ -1,4 +1,4 @@
-import { ChangeEvent, useState } from 'react';
+import { ChangeEvent, useEffect, useState } from 'react';
 import { Images } from '../../atoms/Images';
 import { Input } from '../../atoms/Input';
 import { Button } from '../../atoms/Button';
@@ -15,23 +15,30 @@ import {
   FormMessage,
 } from '../../molecules/Form';
 import { useForm } from 'react-hook-form';
+import { useRecoilState } from 'recoil';
+import { userAtoms } from '../../../states/authAtoms';
+import axiosInstance from '../../../config/axiosInstance';
 import { UserValidation } from '../../../schema/user/type';
 
 export const ProfileForm = () => {
-  const [files, setFiles] = useState<File[]>([]);
-
+  const [user] = useRecoilState(userAtoms);
   const form = useForm({
     resolver: zodResolver(UserValidation),
     defaultValues: {
-      profile_photo: '',
-      fullname: '',
+      name: '',
       username: '',
       email: '',
       bio: '',
+      profilePic: '',
     },
   });
+
   const onSubmit = async (values: z.infer<typeof UserValidation>) => {
-    console.log(values);
+    try {
+      await axiosInstance.put(`/users/update/${user}`, values);
+    } catch (error) {
+      console.log(error);
+    }
   };
   const handleImage = (
     e: ChangeEvent<HTMLInputElement>,
@@ -41,7 +48,6 @@ export const ProfileForm = () => {
     const filesImages = new FileReader();
     if (e.target.files && e.target.files.length > 0) {
       const file = e.target.files[0];
-      setFiles(Array.from(e.target.files));
       if (!file.type.includes('image')) return;
       filesImages.onload = async (event) => {
         const imageDataUrl = event.target?.result?.toString() || '';
@@ -50,6 +56,23 @@ export const ProfileForm = () => {
       filesImages.readAsDataURL(file);
     }
   };
+
+  async function getAPI() {
+    try {
+      await axiosInstance.get(`/users/profile/${user}`);
+    } catch (error) {
+      console.log(error);
+    }
+  }
+  useEffect(() => {
+    // Goi api GET user by id
+    // Set form value
+    // console.log(form.getValues());
+    // form.setValue('fullname', 'abc');
+    // form.setValue('username', 'XYZ');
+    getAPI();
+  }, []);
+
   return (
     <Form {...form}>
       <form
@@ -58,7 +81,7 @@ export const ProfileForm = () => {
       >
         <FormField
           control={form.control}
-          name="profile_photo"
+          name="profilePic"
           render={({ field }) => (
             <FormItem className="flex items-center gap-4 justify-center">
               <FormLabel className="account-form_image-label">

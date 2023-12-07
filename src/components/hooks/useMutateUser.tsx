@@ -1,6 +1,6 @@
 import axios, { AxiosError } from 'axios';
 import { RegistrationInput } from '../../schema/registration/type';
-import { User, userQueryKey } from '../../types/user/types';
+import { User } from '../../types/user/types';
 import { UseMutationResult, useMutation, useQueryClient } from 'react-query';
 import {
   removeUserFromLocalStorage,
@@ -8,6 +8,7 @@ import {
 } from './useQueryUser';
 import axiosInstance from '../../config/axiosInstance';
 import { SignInput } from '../../schema/signin/type';
+import { UserInput } from '../../schema/user/type';
 export const axiosUnAuthInstance = axios.create({
   baseURL: import.meta.env.VITE_API_URL,
   withCredentials: true,
@@ -26,12 +27,9 @@ export const useMutateLogin = (): UseMutationResult<
   SignInput,
   undefined
 > => {
-  const queryClient = useQueryClient();
   return useMutation(login, {
     onSuccess: (data) => {
-      queryClient.removeQueries([]);
       setUserToLocalStorage(data);
-      queryClient.setQueriesData(userQueryKey, data);
     },
   });
 };
@@ -69,6 +67,24 @@ export const useMutateLogout = (): UseMutationResult<User, AxiosError> => {
     onMutate: () => {
       removeUserFromLocalStorage();
       queryClient.removeQueries([]);
+    },
+  });
+};
+
+const updateProfile = async (formData: UserInput) => {
+  const { data } = await axiosInstance.put(`/users/update`, formData);
+  return data;
+};
+
+export const useMutateProfile = (): UseMutationResult<
+  User,
+  AxiosError,
+  UserInput,
+  undefined
+> => {
+  return useMutation(updateProfile, {
+    onSuccess: (data) => {
+      setUserToLocalStorage(data);
     },
   });
 };
