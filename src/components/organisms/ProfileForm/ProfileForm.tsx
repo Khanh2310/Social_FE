@@ -5,10 +5,16 @@ export const ProfileForm = () => {
     <div className="w-full flex flex-col justify-start">
       <div className="flex items-center justify-between">
         <div className="">
-          <h2 className="text-left text-heading3-bold text-light-1">
-            Nguyen Hoang Quoc Bao
+          <h2 className="text-left text-heading3-bold text-light-1 mb-1">
+            Marques Brownlee
           </h2>
-          <p className="text-base-medium text-gray-1 mb-1">Viet Nam</p>
+          <div className="flex items-center mb-2">
+            <p className="text-small-regular text-light-1 ">mkbhd</p>
+            <p className="text-tiny-medium text-gray-1 ml-1 bg-dark-4 px-[7px] py-[5px] rounded-2xl">
+              threads.net
+            </p>
+          </div>
+          <p className="text-light-1 text-tiny-medium">THREADS BIO</p>
         </div>
         <div className="relative object-cover">
           <Images

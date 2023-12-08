@@ -4,7 +4,7 @@ import { BasicLayout } from '../components/layouts/BasicLayout';
 import { SignIn } from '../pages/SignIn';
 import { SignUp } from '../pages/SignUp';
 import { Home } from '../components/templates/Home';
-import { ProfileForm } from '../components/organisms/ProfileForm';
+import { Profile } from '../components/templates/Profile';
 export const RouterConfig: React.FC = () => {
   return (
     <>
@@ -12,7 +12,7 @@ export const RouterConfig: React.FC = () => {
         <Routes>
           <Route path="/" element={<BasicLayout />}>
             <Route index element={<Home />} />
-            <Route path="/profile" element={<ProfileForm />} />
+            <Route path="/profile" element={<Profile />} />
           </Route>
           <Route path="/" element={<AuthLayout />}>
             <Route path="/sign-in" element={<SignIn />} />
