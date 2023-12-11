@@ -71,6 +71,7 @@ export const EditProfileForm = () => {
     // form.setValue('fullname', 'abc');
     // form.setValue('username', 'XYZ');
     getAPI();
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   return (

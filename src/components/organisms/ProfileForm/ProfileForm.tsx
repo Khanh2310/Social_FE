@@ -1,6 +1,7 @@
 import { Images } from '../../atoms/Images';
 
 export const ProfileForm = ({ user }) => {
+  const title = 'threads.net';
   console.log(user.data);
   return (
     <div className="w-full flex flex-col justify-start">
@@ -14,7 +15,7 @@ export const ProfileForm = ({ user }) => {
               {user.data.username}
             </p>
             <p className="text-tiny-medium text-gray-1 ml-1 bg-dark-4 px-[7px] py-[5px] rounded-2xl">
-              threads.net
+              {title}
             </p>
           </div>
           <p className="text-light-1 text-tiny-medium">{user.data.bio}</p>
