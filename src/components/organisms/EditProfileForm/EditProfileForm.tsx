@@ -65,11 +65,6 @@ export const EditProfileForm = () => {
     }
   }
   useEffect(() => {
-    // Goi api GET user by id
-    // Set form value
-    // console.log(form.getValues());
-    // form.setValue('fullname', 'abc');
-    // form.setValue('username', 'XYZ');
     getAPI();
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);

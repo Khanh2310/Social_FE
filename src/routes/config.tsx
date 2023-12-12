@@ -13,7 +13,7 @@ export const RouterConfig: React.FC = () => {
         <Routes>
           <Route path="/" element={<BasicLayout />}>
             <Route index element={<Home />} />
-            <Route path="/:username" element={<Profile />} />
+            <Route path="/:usersname" element={<Profile />} />
             <Route path="/edit" element={<EditProfileForm />} />
           </Route>
           <Route path="/" element={<AuthLayout />}>
