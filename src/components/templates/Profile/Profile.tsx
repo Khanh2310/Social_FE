@@ -3,12 +3,15 @@ import { profileTabs } from '../../../contants';
 import { Images } from '../../atoms/Images';
 import { Tabs, TabsContent, TabsList, TabsTrigger } from '../../atoms/Tabs';
 import { ProfileForm } from '../../organisms/ProfileForm';
+import { useRecoilValue } from 'recoil';
+import { userAtoms } from '../../../states/authAtoms';
 
 export const Profile = () => {
   const { usersname } = useParams<{ usersname: string | undefined }>();
+  const currentUser = useRecoilValue(userAtoms);
   return (
     <>
-      <ProfileForm usersname={usersname} />
+      <ProfileForm usersname={usersname} currentUser={currentUser} />
       <div className="mt-9">
         <Tabs defaultValue="threads" className="w-full">
           <TabsList className="tab">
