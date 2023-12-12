@@ -91,10 +91,10 @@ export const ProfileForm = ({ usersname, currentUser }: userParams) => {
         </div>
       ) : (
         <div className="flex items-center justify-center md:justify-start gap-x-5 mt-5 mb-8">
-          <Button className="text-white bg-dark-4 px-10" size={'sm'}>
+          <Button className="text-white bg-dark-4 px-12" size={'sm'}>
             Follow
           </Button>
-          <Button className="text-dark-1 bg-white px-10" size={'sm'}>
+          <Button className="text-dark-1 bg-white px-12" size={'sm'}>
             Mention
           </Button>
         </div>
